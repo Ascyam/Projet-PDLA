@@ -16,3 +16,10 @@ Vue => Graphical interface
           </arguments>
         </configuration>
       </plugin>
+
+
+En fonction du type de l'utilisateur on ouvre un affichage different : toutes les taches pour le medecin et les bénévoles, et seulement les demandes perso pour un utilisateur normal.
+
+on creer une base de donnée avec chaque ligne a tous les champs que peut avoir une demande d'aide : status, titre, nom, valider
+
+Nom / Check / Titre / Nom bénévole / Statue / Motif non accepté / Avis / Remove
