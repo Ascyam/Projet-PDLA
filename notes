@@ -23,3 +23,9 @@ En fonction du type de l'utilisateur on ouvre un affichage different : toutes le
 on creer une base de donnée avec chaque ligne a tous les champs que peut avoir une demande d'aide : status, titre, nom, valider
 
 Nom / Check / Titre / Nom bénévole / Statue / Motif non accepté / Avis / Remove
+
+
+Ajout : Champs de texte de retour de l'utilisateur
+		Volunteer peut se positionner que lui sur une demande
+		Tri des demandes
+

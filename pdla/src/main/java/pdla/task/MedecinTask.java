@@ -28,7 +28,7 @@ public class MedecinTask extends JPanel implements Task {
 	private JComboBox<String> status = new JComboBox<>(optionsToChoose);	
 	private JTextField reasonField;
 	private JLabel volunteer;
-	private JLabel note;
+	private JLabel feedback;
 	private TaskListener listener;
 	
 	/**
@@ -36,17 +36,17 @@ public class MedecinTask extends JPanel implements Task {
 	 * @param Every fields from the database
 	 *
 	 */
-	public MedecinTask(int id, String title, String username, String volunteer, String status, String reason, int note) {
+	public MedecinTask(int id, String title, String username, String volunteer, String status, String reason, String feedback, String user) {
 		super(new BorderLayout());
 		this.id = id;
 		this.username=username;
 		this.title=new JLabel(title);
 		this.status.setSelectedItem(status);
-		this.reasonField=new JTextField(reason,10);
+		this.reasonField=new JTextField(reason,15);
 		this.volunteer=new JLabel(volunteer);
-		this.note=new JLabel();
-		TaskInputListener inputListener = new TaskInputListener(this, reasonField);
+		this.feedback=new JLabel(feedback);
 		JPanel center = new JPanel();
+		TaskInputListener inputListener = new TaskInputListener(this, reasonField);
 		
 		center.add(this.title);
 		center.add(this.status);
@@ -65,9 +65,8 @@ public class MedecinTask extends JPanel implements Task {
 			Color green = new Color (50, 129, 50);
 			this.status.setForeground(green);
 			center.add(this.volunteer);
-			String noteString = Integer.toString(note)+"/10";
-			this.note.setText(noteString);
-			center.add(this.note);
+			this.feedback.setText(feedback);
+			center.add(this.feedback);
 		}
 		
 		else if(status.equals("Cancel")) {
@@ -89,63 +88,51 @@ public class MedecinTask extends JPanel implements Task {
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return this.username;
 	}
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		return this.title.getText();
 	}
 
 	@Override
 	public String getStatus() {
-		// TODO Auto-generated method stub
 		return (String) this.status.getSelectedItem();
 	}
 
 	@Override
 	public String getReason() {
-		// TODO Auto-generated method stub
 		return this.reasonField.getText();
 	}
 
 	@Override
 	public String getVolunteer() {
-		// TODO Auto-generated method stub
 		return this.volunteer.getText();
 	}
 
 	@Override
-	public int getNote() {
-		// TODO Auto-generated method stub
-		return 0;
+	public String getFeedback() {
+		return null;
 	}
 
 	@Override
 	public void setTaskListener(TaskListener t) {
-		// TODO Auto-generated method stub
 		this.listener=t;
 	}
 
 	@Override
 	public TaskListener getTaskListener() {
-		// TODO Auto-generated method stub
 		return this.listener;
 	}
 
 	@Override
 	public Component getGuiComponent() {
-		// TODO Auto-generated method stub
 		return this;
-	}
-	
-	
+	}	
 }

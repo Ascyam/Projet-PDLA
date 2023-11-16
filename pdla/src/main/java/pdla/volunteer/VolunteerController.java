@@ -7,14 +7,14 @@ import java.util.List;
 
 import pdla.task.*;
 
-public class VolunteerController implements ActionListener, TaskListener{
+public class VolunteerController implements TaskListener, ActionListener{
 	
 	private List<Task> listTasks = new ArrayList<>();
 	private VolunteerModel model;
 	private VolunteerView view;
 	
 	public VolunteerController(int id) {
-		this.model = new VolunteerModel();
+		this.model = new VolunteerModel(id);
 		this.view = new VolunteerView();
 		getTask();
 		view.setTaskList(this.listTasks);
@@ -34,7 +34,11 @@ public class VolunteerController implements ActionListener, TaskListener{
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {}
+	public void actionPerformed(ActionEvent e) {
+		getTask();
+		view.setTaskList(this.listTasks);
+		view.updateScreen();
+	}
 
 	@Override
 	public void taskChanged(Task t) {

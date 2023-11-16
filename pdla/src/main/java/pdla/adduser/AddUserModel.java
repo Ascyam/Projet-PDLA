@@ -11,7 +11,10 @@ import pdla.database.DatabaseCommunication;
  * @version 1.0
  * */
 public class AddUserModel extends DatabaseCommunication{
+	DatabaseCommunication database;
+	
 	public void addUser(ArrayList<String> list) {
-		DatabaseCommunication.addUserDB(list.get(0), list.get(1), list.get(2), list.get(3));
+		database = new DatabaseCommunication();
+		database.addUserDB(list.get(0), list.get(1), list.get(2), list.get(3));
 	}
 }

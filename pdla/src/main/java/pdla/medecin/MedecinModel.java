@@ -5,20 +5,22 @@ import java.util.List;
 import pdla.database.DatabaseCommunication;
 import pdla.task.*;
 
-public class MedecinModel extends DatabaseCommunication{
+public class MedecinModel{
+	DatabaseCommunication database;
+	
 	public MedecinModel(int id) {
-		super();
+		this.database=new DatabaseCommunication();
 	}
 	
 	public List<Task> getTask() {
-		return MedecinModel.getTaskDB(MedecinTask.class);
+		return database.getTaskDB(MedecinTask.class);
 	}
 	
 	public void removeTask(int id) {
-		MedecinModel.removeTaskDB(id);
+		database.removeTaskDB(id);
 	}
 	
 	public void changeTaskString(String field,String value,int id) {
-		MedecinModel.changeTaskStringDB(field,value,id);
+		database.changeTaskStringDB(field,value,id);
 	}
 }

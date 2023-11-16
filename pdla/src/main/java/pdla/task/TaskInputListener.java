@@ -27,16 +27,13 @@ public class TaskInputListener implements KeyListener, ActionListener, ItemListe
 		this.task = task;
 		this.text = text;
 	}
-	
+
 	public TaskInputListener(Task task) {
 		this.task = task;
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyTyped(KeyEvent e) {}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -48,9 +45,8 @@ public class TaskInputListener implements KeyListener, ActionListener, ItemListe
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		TaskListener listener = task.getTaskListener();

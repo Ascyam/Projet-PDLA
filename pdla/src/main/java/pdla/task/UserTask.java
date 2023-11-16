@@ -27,17 +27,15 @@ import javax.swing.border.TitledBorder;
 	private JLabel status;
 	private JLabel reason;
 	private JLabel volunteer;
-	private JTextField noteField;
-	private JLabel note;
+	private JTextField feedbackField;
 	private TaskListener listener;
-	int noteInt;
 	
 	/**
 	 * 
 	 * @param Every fields from the database
 	 *
 	 */
-	public UserTask(int id, String title, String username, String volunteer, String status, String reason, int note) {
+	public UserTask(int id, String title, String username, String volunteer, String status, String reason, String feedback,String user) {
 		super(new BorderLayout());
 		this.id = id;
 		this.username=username;
@@ -46,15 +44,12 @@ import javax.swing.border.TitledBorder;
 		this.status=new JLabel(status);
 		this.reason=new JLabel(reason);
 		this.volunteer=new JLabel(volunteer);
-		this.note=new JLabel("/10");
-		this.noteField = new JTextField(Integer.toString(note),2);
+		this.feedbackField=new JTextField(feedback,20);
 		JPanel center = new JPanel();
-		TaskInputListener inputListener = new TaskInputListener(this);
-		this.noteInt=note;
 		
 		if(status.equals("Wait validation")) {
 			center.add(this.titleField);
-			inputListener = new TaskInputListener(this, titleField);
+			TaskInputListener inputListener = new TaskInputListener(this, titleField);
 			titleField.addKeyListener(inputListener);
 			center.add(this.status);
 			center.add(this.volunteer);
@@ -73,16 +68,16 @@ import javax.swing.border.TitledBorder;
 			Color green = new Color (50, 129, 50);
 			this.status.setForeground(green);
 			center.add(this.volunteer);
-			center.add(this.noteField);
-			inputListener = new TaskInputListener(this, noteField);
-			noteField.addKeyListener(inputListener);
-			center.add(this.note);
+			center.add(this.feedbackField);
+			TaskInputListener inputListener = new TaskInputListener(this, feedbackField);
+			feedbackField.addKeyListener(inputListener);
 		}
 		
 		else if(status.equals("Cancel")) {
 			center.add(this.title);
 			center.add(this.status);
 			this.status.setForeground(Color.RED);
+			this.reason.setForeground(Color.RED);
 			center.add(this.reason);
 			center.add(this.volunteer);
 		}
@@ -91,7 +86,7 @@ import javax.swing.border.TitledBorder;
 		
 		JButton remove = new JButton("Remove");
 		add(remove,BorderLayout.EAST);
-		remove.addActionListener(inputListener);
+		remove.addActionListener(new TaskInputListener(this));
 		
 		setMaximumSize(new Dimension(1000,50));
 		setBorder(new TitledBorder(getUsername()));
@@ -103,63 +98,51 @@ import javax.swing.border.TitledBorder;
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return this.username;
 	}
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		return this.titleField.getText();
 	}
 
 	@Override
 	public String getStatus() {
-		// TODO Auto-generated method stub
 		return this.status.getText();
 	}
 
 	@Override
 	public String getReason() {
-		// TODO Auto-generated method stub
 		return this.reason.getText();
 	}
 
 	@Override
 	public String getVolunteer() {
-		// TODO Auto-generated method stub
 		return this.volunteer.getText();
 	}
 
 	@Override
-	public int getNote() {
-		// TODO Auto-generated method stub
-		return Integer.parseInt(this.noteField.getText());
+	public String getFeedback() {
+		return this.feedbackField.getText();
 	}
 
 	@Override
 	public void setTaskListener(TaskListener t) {
-		// TODO Auto-generated method stub
 		this.listener=t;
 	}
 
 	@Override
 	public TaskListener getTaskListener() {
-		// TODO Auto-generated method stub
 		return this.listener;
 	}
 
 	@Override
 	public Component getGuiComponent() {
-		// TODO Auto-generated method stub
 		return this;
 	}
-	
-	
 }

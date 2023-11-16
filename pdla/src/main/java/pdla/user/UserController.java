@@ -7,7 +7,7 @@ import java.util.List;
 
 import pdla.task.*;
 
-public class UserController implements TaskListener{
+public class UserController implements TaskListener, ActionListener{
 	
 	private List<Task> listTasks = new ArrayList<>();
 	private UserModel model;
@@ -19,10 +19,8 @@ public class UserController implements TaskListener{
 		getTask();
 		view.setTaskList(this.listTasks);
 		view.updateScreen();
-		view.getButton().addActionListener(new ActionListener(){
-	        public void actionPerformed(ActionEvent e){
-	        	createTask();
-	        }});
+		view.getButton().addActionListener(this);
+		view.getButtonRefresh().addActionListener(this);
 	}
 	
 	private void getTask() {
@@ -41,7 +39,7 @@ public class UserController implements TaskListener{
 	@Override
 	public void taskChanged(Task t) {
 		model.changeTaskString("title",t.getTitle(),t.getID());
-		model.changeTaskInt("note",t.getNote(),t.getID());
+		model.changeTaskString("feedback",t.getFeedback(),t.getID());
 		getTask();
 		view.setTaskList(this.listTasks);
 		view.updateScreen();
@@ -49,10 +47,21 @@ public class UserController implements TaskListener{
 
 	@Override
 	public void taskRemoved(Task t) {
-		System.out.println("Task removed !");
 		model.removeTask(t.getID());
 		getTask();
 		view.setTaskList(this.listTasks);
 		view.updateScreen();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(view.getButton())) {
+			createTask();
+		}else {
+			getTask();
+			view.setTaskList(this.listTasks);
+			view.updateScreen();
+		}
+		
 	}
 }

@@ -17,6 +17,7 @@ public class UserView {
 	
 	private JFrame frame = new JFrame("Request Help");
 	private JButton newTask = new JButton("Request help");
+	private JButton refresh = new JButton("Refresh");
 	private List<Task> listTasks = new ArrayList<>();
 	
 	private JPanel panel = new JPanel(new BorderLayout());
@@ -26,6 +27,7 @@ public class UserView {
 	
 	private void createScreen() {
 		topPanel.add(newTask);
+		topPanel.add(refresh);
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 	    panel.add(topPanel, BorderLayout.NORTH);
 	    panel.add(scrollerBar, BorderLayout.CENTER);
@@ -36,6 +38,10 @@ public class UserView {
 	
 	public JButton getButton() {
 		return newTask;
+	}
+	
+	public JButton getButtonRefresh() {
+		return refresh;
 	}
 	
 	public void setTaskList(List<Task> list) {

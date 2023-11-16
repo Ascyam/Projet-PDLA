@@ -44,7 +44,7 @@ public interface Task {
 	/**
 	 * @return the note of this task. 
 	 */
-	public int getNote();
+	public String getFeedback();
 	
 	/**
 	 * Sets the task listener on which this task reports various events. 

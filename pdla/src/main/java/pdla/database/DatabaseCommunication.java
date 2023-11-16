@@ -7,8 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import pdla.task.Task;
 
@@ -21,15 +20,15 @@ import pdla.task.Task;
  * @version 1.0
  * */
 public class DatabaseCommunication {
-	private static String userName;
+	private String userName;
 	
 	private static String url = "jdbc:mysql://srv-bdens.insa-toulouse.fr:3306/projet_gei_013";
     private static String usernamedb = "projet_gei_013";
     private static String passworddb = "thoo1Xoh";
     
-    private static List<Task> listTasks = new ArrayList<>();
+    private List<Task> listTasks = new ArrayList<>();
     
-    private static String selectAll;
+    private String selectAll;
 
     /**
      * Constructor.
@@ -37,7 +36,11 @@ public class DatabaseCommunication {
      * */
 	public DatabaseCommunication(int id) {
 		setUsernameDB(id);
-		selectAll = "SELECT * FROM Task WHERE username=\""+ userName +"\"";
+		if (getRole(id).equals("Volunteer")) {
+			selectAll = "SELECT * FROM Task WHERE volunteer =\"\" OR volunteer=\""+userName+"\"";
+		}else {
+			selectAll = "SELECT * FROM Task WHERE username=\""+ userName +"\"";
+		}
 	}
 	
 	/**
@@ -72,24 +75,24 @@ public class DatabaseCommunication {
      * @return List of all task. 
      * @throws SQLException
      * */
-	public static List<Task> getTaskDB(Class<? extends Task> classType){
+	public List<Task> getTaskDB(Class<? extends Task> classType){
 		try {
             Connection connexion = DriverManager.getConnection(url, usernamedb, passworddb);
             Statement statement = connexion.createStatement();
             String sql = selectAll; 
             ResultSet resultSet = statement.executeQuery(sql);
             listTasks.clear();
-            Constructor<? extends Task> task = classType.getConstructor(int.class,String.class,String.class,String.class,String.class,String.class,int.class);
+            Constructor<? extends Task> task = classType.getConstructor(int.class,String.class,String.class,String.class,String.class,String.class,String.class,String.class);
             if(resultSet.isBeforeFirst()) {
             	while(resultSet.next()) {
             		if(resultSet.getString(5).equals("Wait validation")) {
-            			listTasks.add(task.newInstance(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),"Wait validation",resultSet.getString(6),resultSet.getInt(7)));
+            			listTasks.add(task.newInstance(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),"Wait validation",resultSet.getString(6),resultSet.getString(7),userName));
             		}else if(resultSet.getString(5).equals("In progress")) {
-            			listTasks.add(task.newInstance(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),"In progress",resultSet.getString(6),resultSet.getInt(7)));
+            			listTasks.add(task.newInstance(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),"In progress",resultSet.getString(6),resultSet.getString(7),userName));
             		}else if(resultSet.getString(5).equals("Cancel")) {
-            			listTasks.add(task.newInstance(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),"Cancel",resultSet.getString(6),resultSet.getInt(7)));
+            			listTasks.add(task.newInstance(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),"Cancel",resultSet.getString(6),resultSet.getString(7),userName));
             		}else if(resultSet.getString(5).equals("End")){
-            			listTasks.add(task.newInstance(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),"End",resultSet.getString(6),resultSet.getInt(7)));
+            			listTasks.add(task.newInstance(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),"End",resultSet.getString(6),resultSet.getString(7),userName));
             		}
             	}
             }
@@ -103,10 +106,10 @@ public class DatabaseCommunication {
      * @param title the title of task created.
      * @throws SQLException
      * */
-	public static void addTaskDB(String title) {
+	public void addTaskDB(String title) {
         try {
             Connection connexion = DriverManager.getConnection(url, usernamedb, passworddb);
-            String sql = "INSERT INTO Task (title,username,volunteer,status,reason,note) VALUES (\""+title+ "\", \"" + userName + "\",\"\",\"Wait validation\",\"\",5)"; 
+            String sql = "INSERT INTO Task (title,username,volunteer,status,reason,feedback) VALUES (\""+title+ "\", \"" + userName + "\",\"\",\"Wait validation\",\"\",\"\")"; 
             PreparedStatement preparedSmnt =connexion.prepareStatement(sql);
             preparedSmnt.execute();
             connexion.close();
@@ -121,7 +124,7 @@ public class DatabaseCommunication {
      * @param role of the user.
      * @throws SQLException
      * */
-	public static void addUserDB(String firstname, String lastname, String password, String role) {
+	public void addUserDB(String firstname, String lastname, String password, String role) {
         try {
             Connection connexion = DriverManager.getConnection(url, usernamedb, passworddb);
             String sql = "INSERT INTO Login (username, password , Firstname , Lastname , Role) VALUES (\""+lastname.toLowerCase()+ "\",\""+password+"\",\""+firstname+"\",\""+lastname+ "\",\""+role+ "\")"; 
@@ -136,7 +139,7 @@ public class DatabaseCommunication {
      * @param id the id of task removed.
      * @throws SQLException
      * */
-	public static void removeTaskDB(int id) {
+	public void removeTaskDB(int id) {
 		try {
             Connection connexion = DriverManager.getConnection(url, usernamedb, passworddb);
             String sql = "DELETE FROM Task WHERE id=\""+Integer.toString(id)+"\""; 
@@ -153,7 +156,7 @@ public class DatabaseCommunication {
      * @param id the id of the task.
      * @throws SQLException
      * */
-	public static void changeTaskStringDB(String field,String value,int id) {
+	public void changeTaskStringDB(String field,String value,int id) {
 		try {
             Connection connexion = DriverManager.getConnection(url, usernamedb, passworddb);
             String sql = "UPDATE Task SET "+field+"=\""+value+"\" WHERE id=\""+Integer.toString(id)+"\""; 
@@ -164,19 +167,27 @@ public class DatabaseCommunication {
 	}
 	
 	/**
-     * Change one field in a row. The field must be a Int in the table.
-     * @param field the field that is changed.
-     * @param value the value that is set in the field.
-     * @param id the id of the task.
-     * @throws SQLException
+     * Get the role of an user from the table Login according to his id.
+     *  
+     * @param id int : the id of the user
+     * @return the role or an empty string is there is a error 
      * */
-	public static void changeTaskIntDB(String field,int value,int id) {
+	public String getRole(int id) {
 		try {
-            Connection connexion = DriverManager.getConnection(url, usernamedb, passworddb);
-            String sql = "UPDATE Task SET "+field+"=\""+Integer.toString(value)+"\" WHERE id=\""+Integer.toString(id)+"\"";  
-            PreparedStatement preparedSmnt =connexion.prepareStatement(sql);
-            preparedSmnt.execute();
+	        Connection connexion = DriverManager.getConnection(url, usernamedb, passworddb);
+	        Statement statement = connexion.createStatement();
+	        String sql = "SELECT Role FROM Login WHERE userID="+Integer.toString(id); 
+	        ResultSet resultSet = statement.executeQuery(sql);
+	        resultSet.next();
+	        String result = resultSet.getString(1);
+	        resultSet.close();
+            statement.close();
             connexion.close();
-        }catch (SQLException e) {e.printStackTrace();}
+	        return result;
+	    } catch (SQLException e) {
+	        System.out.println(e);
+	        e.printStackTrace();
+	    }
+		return "";
 	}
 }

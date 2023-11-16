@@ -5,16 +5,18 @@ import java.util.List;
 import pdla.database.DatabaseCommunication;
 import pdla.task.*;
 
-public class VolunteerModel extends DatabaseCommunication{
-	public VolunteerModel() {
-		super();
+public class VolunteerModel{
+	DatabaseCommunication database;
+	
+	public VolunteerModel(int id) {
+		this.database = new DatabaseCommunication(id);
 	}
 	
 	public List<Task> getTask() {
-		return VolunteerModel.getTaskDB(VolunteerTask.class);
+		return database.getTaskDB(VolunteerTask.class);
 	}
 	
 	public void changeTaskString(String field,String value,int id) {
-		VolunteerModel.changeTaskStringDB(field,value,id);
+		database.changeTaskStringDB(field,value,id);
 	}
 }

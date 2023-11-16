@@ -4,11 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -17,7 +18,7 @@ import javax.swing.border.TitledBorder;
  * @version 1.0
  *
  */
-public class VolunteerTask extends JPanel implements Task {
+public class VolunteerTask extends JPanel implements Task, ItemListener {
 	
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -25,126 +26,135 @@ public class VolunteerTask extends JPanel implements Task {
 	private JLabel title;
 	private JLabel status;
 	private JLabel reason;
-	private JTextField volunteerField;
-	private JLabel volunteer;
-	private JLabel note;
+	private JCheckBox validate;
+	private JLabel feedback;
 	private TaskListener listener;
+	private String volunteer;
+	private String user;
 	
 	/**
 	 * 
 	 * @param Every fields from the database
 	 *
 	 */
-	public VolunteerTask(int id, String title, String username, String volunteer, String status, String reason, int note) {
+	public VolunteerTask(int id, String title, String username, String volunteer, String status, String reason, String feedback,String user) {
 		super(new BorderLayout());
+		this.volunteer = volunteer;
+		this.user=user;
 		this.id = id;
 		this.username=username;
 		this.title=new JLabel(title);
 		this.status=new JLabel(status);
 		this.reason=new JLabel(reason);
-		this.volunteerField=new JTextField(volunteer,10);
-		this.volunteer=new JLabel(volunteer);
-		this.note=new JLabel();
-		TaskInputListener inputListener = new TaskInputListener(this, volunteerField);
+		this.validate = new JCheckBox();
+		this.feedback=new JLabel(feedback);
 		JPanel center = new JPanel();
 		
 		center.add(this.title);
 		center.add(this.status);
 		
+		validate.setSelected(!volunteer.isEmpty());
+		
 		if(status.equals("Wait validation")) {
-			center.add(this.volunteerField);
-			volunteerField.addKeyListener(inputListener);
+			center.add(validate);
+			validate.addItemListener(this);
 		}
 		
 		else if(status.equals("In progress")) {
 			this.status.setForeground(Color.BLUE);
-			center.add(this.volunteer);
+			validate.setEnabled(false);
+			center.add(this.validate);
 		}
 		
 		else if(status.equals("End")) {
 			Color green = new Color (50, 129, 50);
 			this.status.setForeground(green);
-			center.add(this.volunteer);
-			String noteString = Integer.toString(note)+"/10";
-			this.note.setText(noteString);
-			center.add(this.note);
+			validate.setEnabled(false);
+			center.add(this.validate);
+			center.add(this.feedback);
 		}
 		
 		else if(status.equals("Cancel")) {
 			this.status.setForeground(Color.RED);
 			center.add(this.reason);
-			center.add(this.volunteer);
+			validate.setEnabled(false);
+			center.add(this.validate);
 		}
 		
 		add(center);
-		
-		JButton remove = new JButton("Remove");
-		add(remove,BorderLayout.EAST);
-		remove.addActionListener(inputListener);
 		
 		setMaximumSize(new Dimension(1000,50));
 		setBorder(new TitledBorder(getUsername()));
 	}
 
+	/*
+	 * Task implementation
+	 */
+	
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return this.username;
 	}
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		return this.title.getText();
 	}
 
 	@Override
 	public String getStatus() {
-		// TODO Auto-generated method stub
 		return this.status.getText();
 	}
 
 	@Override
 	public String getReason() {
-		// TODO Auto-generated method stub
 		return this.reason.getText();
 	}
 
 	@Override
 	public String getVolunteer() {
-		// TODO Auto-generated method stub
-		return this.volunteerField.getText();
+		return this.volunteer;
 	}
 
 	@Override
-	public int getNote() {
-		// TODO Auto-generated method stub
-		return 0;
+	public String getFeedback() {
+		return null;
 	}
 
 	@Override
 	public void setTaskListener(TaskListener t) {
-		// TODO Auto-generated method stub
 		this.listener=t;
 	}
 
 	@Override
 	public TaskListener getTaskListener() {
-		// TODO Auto-generated method stub
 		return this.listener;
 	}
 
 	@Override
 	public Component getGuiComponent() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 	
-	
+	/*
+	 * ItemListener implementation
+	 */
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == 1) {
+			System.out.println(user + " s'est ajouté à une tâche");
+			volunteer=user;
+			listener.taskChanged(this);
+		} else {
+			System.out.println(user + " s'est retirer d'une tâche");
+			volunteer = "";
+			listener.taskChanged(this);
+		}
+	}
 }

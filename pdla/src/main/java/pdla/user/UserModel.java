@@ -6,29 +6,26 @@ import pdla.database.*;
 import pdla.task.Task;
 import pdla.task.UserTask;
 
-public class UserModel extends DatabaseCommunication{
+public class UserModel {
+	DatabaseCommunication database;
 	
 	public UserModel(int id) {
-		super(id);
+		this.database = new DatabaseCommunication(id);
 	}
 	
 	public List<Task> getTask() {
-		return UserModel.getTaskDB(UserTask.class);
+		return database.getTaskDB(UserTask.class);
 	}
 	
 	public void addTask(String title) {
-		UserModel.addTaskDB(title);
+		database.addTaskDB(title);
 	}
 	
 	public void removeTask(int id) {
-		UserModel.removeTaskDB(id);
+		database.removeTaskDB(id);
 	}
 	
 	public void changeTaskString(String field,String value,int id) {
-		UserModel.changeTaskStringDB(field,value,id);
-	}
-	
-	public void changeTaskInt(String field,int value,int id) {
-		UserModel.changeTaskIntDB(field,value,id);
+		database.changeTaskStringDB(field,value,id);
 	}
 }
