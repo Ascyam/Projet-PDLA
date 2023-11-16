@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,6 +19,8 @@ public class VolunteerView {
 	private JFrame frame = new JFrame("Volunteer");
 	private JButton refresh = new JButton("Refresh");
 	private List<Task> listTasks = new ArrayList<>();
+	private String[] optionsToChoose = {"Alphabetic", "Status", "User"};
+	private JComboBox<String> SortButton = new JComboBox<>(optionsToChoose);
 	
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JPanel topPanel = new JPanel();    

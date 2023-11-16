@@ -2,12 +2,16 @@ package pdla.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import pdla.sorting.*;
 import pdla.task.*;
 
-public class UserController implements TaskListener, ActionListener{
+public class UserController implements TaskListener, ActionListener, ItemListener{
 	
 	private List<Task> listTasks = new ArrayList<>();
 	private UserModel model;
@@ -21,19 +25,31 @@ public class UserController implements TaskListener, ActionListener{
 		view.updateScreen();
 		view.getButton().addActionListener(this);
 		view.getButtonRefresh().addActionListener(this);
+		view.getButtonSort().addItemListener(this);
 	}
 	
 	private void getTask() {
 		this.listTasks.clear();
 		this.listTasks.addAll(model.getTask());
 		listTasks.forEach((c)->c.setTaskListener(this));
+		sort((String) view.getButtonSort().getSelectedItem());
+		view.setTaskList(this.listTasks);
+		view.updateScreen();
 	}
 	
 	private void createTask() {
 		model.addTask("New request");
 		getTask();
-		view.setTaskList(this.listTasks);
-		view.updateScreen();
+	}
+	
+	private void sort(String sort) {
+		System.out.println(sort);
+		if (sort.equals("Alphabetic")) {
+			Collections.sort(this.listTasks, new titleComparator());
+		}
+		else if  (sort.equals("Status")) {
+			Collections.sort(this.listTasks, new statusComparator());
+		}
 	}
 
 	@Override
@@ -41,16 +57,12 @@ public class UserController implements TaskListener, ActionListener{
 		model.changeTaskString("title",t.getTitle(),t.getID());
 		model.changeTaskString("feedback",t.getFeedback(),t.getID());
 		getTask();
-		view.setTaskList(this.listTasks);
-		view.updateScreen();
 	}
 
 	@Override
 	public void taskRemoved(Task t) {
 		model.removeTask(t.getID());
 		getTask();
-		view.setTaskList(this.listTasks);
-		view.updateScreen();
 	}
 
 	@Override
@@ -63,5 +75,10 @@ public class UserController implements TaskListener, ActionListener{
 			view.updateScreen();
 		}
 		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		sort((String) e.getItem());
 	}
 }

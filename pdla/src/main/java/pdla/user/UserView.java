@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,6 +19,8 @@ public class UserView {
 	private JFrame frame = new JFrame("Request Help");
 	private JButton newTask = new JButton("Request help");
 	private JButton refresh = new JButton("Refresh");
+	private String[] optionsToChoose = {"Alphabetic", "Status"};
+	private JComboBox<String> SortButton = new JComboBox<>(optionsToChoose);
 	private List<Task> listTasks = new ArrayList<>();
 	
 	private JPanel panel = new JPanel(new BorderLayout());
@@ -28,6 +31,7 @@ public class UserView {
 	private void createScreen() {
 		topPanel.add(newTask);
 		topPanel.add(refresh);
+		topPanel.add(SortButton);
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 	    panel.add(topPanel, BorderLayout.NORTH);
 	    panel.add(scrollerBar, BorderLayout.CENTER);
@@ -42,6 +46,10 @@ public class UserView {
 	
 	public JButton getButtonRefresh() {
 		return refresh;
+	}
+	
+	public JComboBox<String> getButtonSort() {
+		return SortButton;
 	}
 	
 	public void setTaskList(List<Task> list) {
