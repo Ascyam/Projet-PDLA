@@ -2,12 +2,18 @@ package pdla.medecin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import pdla.sorting.statusComparator;
+import pdla.sorting.titleComparator;
+import pdla.sorting.usernameComparator;
 import pdla.task.*;
 
-public class MedecinController implements TaskListener{
+public class MedecinController implements TaskListener, ActionListener, ItemListener{
 	
 	private List<Task> listTasks = new ArrayList<>();
 	private MedecinModel model;
@@ -16,21 +22,32 @@ public class MedecinController implements TaskListener{
 	public MedecinController(int id) {
 		this.model = new MedecinModel(id);
 		this.view = new MedecinView();
-		getTask();
 		view.setTaskList(this.listTasks);
 		view.updateScreen();
-		view.getButton().addActionListener(new ActionListener(){
-	        public void actionPerformed(ActionEvent e){
-	        	getTask();
-	        	view.setTaskList(listTasks);
-	        	view.updateScreen();
-	        }});
+		view.getButton().addActionListener(this);
+		view.getButtonSort().addItemListener(this);
+		getTask();
 	}
 	
 	private void getTask() {
 		this.listTasks.clear();
 		this.listTasks.addAll(model.getTask());
 		listTasks.forEach((c)->c.setTaskListener(this));
+		sort((String) view.getButtonSort().getSelectedItem());
+		view.setTaskList(listTasks);
+    	view.updateScreen();
+	}
+	
+	private void sort(String sort) {
+		if (sort.equals("Alphabetic")) {
+			Collections.sort(this.listTasks, new titleComparator());
+		}
+		else if  (sort.equals("Status")) {
+			Collections.sort(this.listTasks, new statusComparator());
+		}
+		else if  (sort.equals("User")) {
+			Collections.sort(this.listTasks, new usernameComparator());
+		}
 	}
 
 	@Override
@@ -48,5 +65,15 @@ public class MedecinController implements TaskListener{
 		getTask();
 		view.setTaskList(this.listTasks);
 		view.updateScreen();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		getTask();
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		getTask();
 	}
 }

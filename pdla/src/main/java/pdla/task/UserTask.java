@@ -49,25 +49,32 @@ import javax.swing.border.TitledBorder;
 		
 		if(status.equals("Wait validation")) {
 			center.add(this.titleField);
+			center.add(new JLabel(" | "));
 			TaskInputListener inputListener = new TaskInputListener(this, titleField);
 			titleField.addKeyListener(inputListener);
 			center.add(this.status);
+			center.add(new JLabel(" | "));
 			center.add(this.volunteer);
 		}
 		
 		else if(status.equals("In progress")) {
 			center.add(this.title);
+			center.add(new JLabel(" | "));
 			center.add(this.status);
+			center.add(new JLabel(" | "));
 			this.status.setForeground(Color.BLUE);
 			center.add(this.volunteer);
 		}
 		
 		else if(status.equals("End")) {
 			center.add(this.title);
+			center.add(new JLabel(" | "));
 			center.add(this.status);
+			center.add(new JLabel(" | "));
 			Color green = new Color (50, 129, 50);
 			this.status.setForeground(green);
 			center.add(this.volunteer);
+			center.add(new JLabel(" | "));
 			center.add(this.feedbackField);
 			TaskInputListener inputListener = new TaskInputListener(this, feedbackField);
 			feedbackField.addKeyListener(inputListener);
@@ -75,10 +82,12 @@ import javax.swing.border.TitledBorder;
 		
 		else if(status.equals("Cancel")) {
 			center.add(this.title);
+			center.add(new JLabel(" | "));
 			center.add(this.status);
 			this.status.setForeground(Color.RED);
 			this.reason.setForeground(Color.RED);
 			center.add(this.reason);
+			center.add(new JLabel(" | "));
 			center.add(this.volunteer);
 		}
 		

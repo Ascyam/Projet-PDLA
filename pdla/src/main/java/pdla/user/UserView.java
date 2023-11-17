@@ -19,7 +19,7 @@ public class UserView {
 	private JFrame frame = new JFrame("Request Help");
 	private JButton newTask = new JButton("Request help");
 	private JButton refresh = new JButton("Refresh");
-	private String[] optionsToChoose = {"Alphabetic", "Status"};
+	private String[] optionsToChoose = {"Status", "Alphabetic"};
 	private JComboBox<String> SortButton = new JComboBox<>(optionsToChoose);
 	private List<Task> listTasks = new ArrayList<>();
 	
@@ -36,7 +36,7 @@ public class UserView {
 	    panel.add(topPanel, BorderLayout.NORTH);
 	    panel.add(scrollerBar, BorderLayout.CENTER);
 	    frame.add(panel);
-	    frame.setSize(700,300);
+	    frame.setSize(800,300);
 	    frame.setVisible(true); 
 	}
 	

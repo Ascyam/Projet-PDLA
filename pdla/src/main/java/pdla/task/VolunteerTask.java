@@ -51,7 +51,9 @@ public class VolunteerTask extends JPanel implements Task, ItemListener {
 		JPanel center = new JPanel();
 		
 		center.add(this.title);
+		center.add(new JLabel(" | "));
 		center.add(this.status);
+		center.add(new JLabel(" | "));
 		
 		validate.setSelected(!volunteer.isEmpty());
 		
@@ -71,6 +73,7 @@ public class VolunteerTask extends JPanel implements Task, ItemListener {
 			this.status.setForeground(green);
 			validate.setEnabled(false);
 			center.add(this.validate);
+			center.add(new JLabel(" | "));
 			center.add(this.feedback);
 		}
 		

@@ -49,7 +49,9 @@ public class MedecinTask extends JPanel implements Task {
 		TaskInputListener inputListener = new TaskInputListener(this, reasonField);
 		
 		center.add(this.title);
+		center.add(new JLabel(" | "));
 		center.add(this.status);
+		center.add(new JLabel(" | "));
 		this.status.addItemListener(inputListener);
 		
 		if(status.equals("Wait validation")) {
@@ -65,6 +67,7 @@ public class MedecinTask extends JPanel implements Task {
 			Color green = new Color (50, 129, 50);
 			this.status.setForeground(green);
 			center.add(this.volunteer);
+			center.add(new JLabel(" | "));
 			this.feedback.setText(feedback);
 			center.add(this.feedback);
 		}
@@ -72,6 +75,7 @@ public class MedecinTask extends JPanel implements Task {
 		else if(status.equals("Cancel")) {
 			this.status.setForeground(Color.RED);
 			center.add(this.reasonField);
+			center.add(new JLabel(" | "));
 			this.reasonField.addKeyListener(inputListener);
 			center.add(this.volunteer);
 		}

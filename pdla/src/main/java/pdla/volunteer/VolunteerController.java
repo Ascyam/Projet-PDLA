@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pdla.sorting.titleComparator;
+import pdla.sorting.*;
 import pdla.task.*;
 
 public class VolunteerController implements TaskListener, ActionListener, ItemListener{
@@ -21,39 +21,34 @@ public class VolunteerController implements TaskListener, ActionListener, ItemLi
 		this.model = new VolunteerModel(id);
 		this.view = new VolunteerView();
 		getTask();
-		view.setTaskList(this.listTasks);
-		view.updateScreen();
-		view.getButton().addActionListener(new ActionListener(){
-	        public void actionPerformed(ActionEvent e){
-	        	getTask();
-	        	view.setTaskList(listTasks);
-	        	view.updateScreen();
-	        }});
+		view.getButton().addActionListener(this);
+		view.getButtonSort().addItemListener(this);
 	}
 	
 	private void getTask() {
 		this.listTasks.clear();
 		this.listTasks.addAll(model.getTask());
 		listTasks.forEach((c)->c.setTaskListener(this));
+		sort((String) view.getButtonSort().getSelectedItem());
+		view.setTaskList(listTasks);
+    	view.updateScreen();
 	}
 	
 	private void sort(String sort) {
-		getTask();
 		if (sort.equals("Alphabetic")) {
 			Collections.sort(this.listTasks, new titleComparator());
 		}
 		else if  (sort.equals("Status")) {
-			Collections.sort(this.listTasks, new titleComparator());
+			Collections.sort(this.listTasks, new statusComparator());
 		}
-		view.setTaskList(this.listTasks);
-		view.updateScreen();
+		else if  (sort.equals("User")) {
+			Collections.sort(this.listTasks, new usernameComparator());
+		}
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		getTask();
-		view.setTaskList(this.listTasks);
-		view.updateScreen();
 	}
 
 	@Override
@@ -69,6 +64,6 @@ public class VolunteerController implements TaskListener, ActionListener, ItemLi
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		sort((String) e.getItem());
+		getTask();
 	}
 }

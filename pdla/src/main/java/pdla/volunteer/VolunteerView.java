@@ -19,7 +19,7 @@ public class VolunteerView {
 	private JFrame frame = new JFrame("Volunteer");
 	private JButton refresh = new JButton("Refresh");
 	private List<Task> listTasks = new ArrayList<>();
-	private String[] optionsToChoose = {"Alphabetic", "Status", "User"};
+	private String[] optionsToChoose = {"Status", "Alphabetic", "User"};
 	private JComboBox<String> SortButton = new JComboBox<>(optionsToChoose);
 	
 	private JPanel panel = new JPanel(new BorderLayout());
@@ -29,16 +29,21 @@ public class VolunteerView {
 	
 	private void createScreen() {
 		topPanel.add(refresh);
+		topPanel.add(SortButton);
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 	    panel.add(topPanel, BorderLayout.NORTH);
 	    panel.add(scrollerBar, BorderLayout.CENTER);
 	    frame.add(panel);
-	    frame.setSize(700,300);
+	    frame.setSize(800,300);
 	    frame.setVisible(true); 
 	}
 	
 	public JButton getButton() {
 		return refresh;
+	}
+	
+	public JComboBox<String> getButtonSort () {
+		return SortButton;
 	}
 	
 	public void setTaskList(List<Task> list) {

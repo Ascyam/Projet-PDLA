@@ -20,12 +20,10 @@ public class UserController implements TaskListener, ActionListener, ItemListene
 	public UserController(int id) {
 		this.model = new UserModel(id);
 		this.view = new UserView();
-		getTask();
-		view.setTaskList(this.listTasks);
-		view.updateScreen();
 		view.getButton().addActionListener(this);
 		view.getButtonRefresh().addActionListener(this);
 		view.getButtonSort().addItemListener(this);
+		getTask();
 	}
 	
 	private void getTask() {
@@ -43,7 +41,6 @@ public class UserController implements TaskListener, ActionListener, ItemListene
 	}
 	
 	private void sort(String sort) {
-		System.out.println(sort);
 		if (sort.equals("Alphabetic")) {
 			Collections.sort(this.listTasks, new titleComparator());
 		}
@@ -71,14 +68,11 @@ public class UserController implements TaskListener, ActionListener, ItemListene
 			createTask();
 		}else {
 			getTask();
-			view.setTaskList(this.listTasks);
-			view.updateScreen();
 		}
-		
 	}
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		sort((String) e.getItem());
+		getTask();
 	}
 }
