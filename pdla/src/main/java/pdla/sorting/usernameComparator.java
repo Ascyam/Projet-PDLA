@@ -3,6 +3,12 @@ package pdla.sorting;
 import java.util.Comparator;
 import pdla.task.Task;
 
+/**
+ * Sorting task based on the username.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class usernameComparator implements Comparator<Task> {
 
 	@Override

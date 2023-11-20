@@ -1,6 +1,7 @@
 package pdla.user;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -11,6 +12,12 @@ import java.util.List;
 import pdla.sorting.*;
 import pdla.task.*;
 
+/**
+ * Controller for the user view.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class UserController implements TaskListener, ActionListener, ItemListener{
 	
 	private List<Task> listTasks = new ArrayList<>();

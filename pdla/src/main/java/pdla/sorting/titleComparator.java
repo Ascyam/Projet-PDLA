@@ -3,6 +3,12 @@ package pdla.sorting;
 import java.util.Comparator;
 import pdla.task.Task;
 
+/**
+ * Sorting task based on the title.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class titleComparator implements Comparator<Task> {
 
 	@Override

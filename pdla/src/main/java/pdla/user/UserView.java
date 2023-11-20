@@ -14,6 +14,12 @@ import javax.swing.JScrollPane;
 
 import pdla.task.*;
 
+/**
+ * View for the user view.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class UserView {
 	
 	private JFrame frame = new JFrame("Request Help");

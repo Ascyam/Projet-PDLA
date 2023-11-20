@@ -6,6 +6,12 @@ import pdla.database.*;
 import pdla.task.Task;
 import pdla.task.UserTask;
 
+/**
+ * Model for the user view.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class UserModel {
 	DatabaseCommunication database;
 	

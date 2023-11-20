@@ -7,7 +7,7 @@ import pdla.database.DatabaseCommunication;
 /**
  * Model for the adduser view. This class connect with the database to add user.
  *  
- * @author Benjamin Zolver
+ * @author Alan Dutems, Benjamin Zolver
  * @version 1.0
  * */
 public class AddUserModel extends DatabaseCommunication{

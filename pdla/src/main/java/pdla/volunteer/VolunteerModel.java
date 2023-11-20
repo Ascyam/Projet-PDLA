@@ -5,6 +5,12 @@ import java.util.List;
 import pdla.database.DatabaseCommunication;
 import pdla.task.*;
 
+/**
+ * Model for the volunteer view.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class VolunteerModel{
 	DatabaseCommunication database;
 	

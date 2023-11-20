@@ -5,7 +5,7 @@ import pdla.login.*;
 /**
  * Main class to start the application. 
  *  
- * @author Benjamin Zolver
+ * @author Alan Dutems, Benjamin Zolver
  * @param
  * @version 1.0
  * */

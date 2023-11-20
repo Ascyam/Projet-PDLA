@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Model for the login view. This class try a connection with the user inputs.
  *  
- * @author Benjamin Zolver
+ * @author Alan Dutems, Benjamin Zolver
  * @version 1.0
  * */
 public class LoginModel {

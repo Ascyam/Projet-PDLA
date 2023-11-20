@@ -1,7 +1,7 @@
 package pdla.task;
 
 /**
- * 
+ * Listener interface. In this interface all the methods used by task listeners are defined. 
  * @author Benjamin Zolver
  * @version 1.0
  *

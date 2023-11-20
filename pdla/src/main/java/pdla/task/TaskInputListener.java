@@ -9,7 +9,7 @@ import java.awt.event.ItemListener;
 import javax.swing.JTextField;
 
 /**
- * 
+ * Special listener for the task. 
  * @author Benjamin Zolver
  * @version 1.0
  *

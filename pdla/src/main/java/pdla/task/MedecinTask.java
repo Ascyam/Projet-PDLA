@@ -13,7 +13,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 
 /**
- * 
+ * Medecin task.
  * @author Benjamin Zolver
  * @version 1.0
  *

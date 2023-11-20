@@ -13,6 +13,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/**
+ * View for the adduser screen. This class display the connection interface for the user. 
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class AddUserView {
 	private JFrame frame = new JFrame("Add user");
 	private JPanel panelcenter = new JPanel(new GridLayout(4,1));

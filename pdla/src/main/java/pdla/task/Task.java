@@ -4,7 +4,7 @@ package pdla.task;
 import java.awt.Component;
 
 /**  
- * 
+ * Task interface. In this interface all the methods used by tasks are defined.  
  * @author Benjamin Zolver
  * @version 1.0
  *

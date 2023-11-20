@@ -14,6 +14,12 @@ import javax.swing.JScrollPane;
 
 import pdla.task.*;
 
+/**
+ * View for the medecin view.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class MedecinView {
 	
 	private JFrame frame = new JFrame("Medecin");

@@ -16,7 +16,7 @@ import pdla.task.Task;
  * Different methods are implement to connect, get, change and remove values.
  * This class only work with database projet_gei_013 from srv-bdens.insa-toulouse.fr.
  *  
- * @author Benjamin Zolver
+ * @author Alan Dutems, Benjamin Zolver
  * @version 1.0
  * */
 public class DatabaseCommunication {

@@ -13,6 +13,12 @@ import pdla.sorting.titleComparator;
 import pdla.sorting.usernameComparator;
 import pdla.task.*;
 
+/**
+ * Controller for the medecin view.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class MedecinController implements TaskListener, ActionListener, ItemListener{
 	
 	private List<Task> listTasks = new ArrayList<>();

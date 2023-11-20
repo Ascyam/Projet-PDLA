@@ -15,7 +15,7 @@ import pdla.volunteer.*;
 /**
  * Controller for the login view.
  *  
- * @author Benjamin Zolver
+ * @author Alan Dutems, Benjamin Zolver
  * @param view LoginView : the interface with the user. 
  * @param model LoginModel : the model to communicate with the database. 
  * @version 1.0

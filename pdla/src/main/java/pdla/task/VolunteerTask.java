@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 /**
- * 
+ * Volunteer task.
  * @author Benjamin Zolver
  * @version 1.0
  *

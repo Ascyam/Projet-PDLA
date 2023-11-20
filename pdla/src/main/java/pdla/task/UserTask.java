@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 /**
- * 
+ * User task.
  * @author Benjamin Zolver
  * @version 1.0
  *

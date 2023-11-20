@@ -11,6 +11,12 @@ import java.util.List;
 import pdla.sorting.*;
 import pdla.task.*;
 
+/**
+ * Controller for the volunteer view.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class VolunteerController implements TaskListener, ActionListener, ItemListener{
 	
 	private List<Task> listTasks = new ArrayList<>();

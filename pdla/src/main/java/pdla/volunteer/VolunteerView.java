@@ -1,7 +1,7 @@
 package pdla.volunteer;
 
 import java.awt.BorderLayout;
-
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +14,12 @@ import javax.swing.JScrollPane;
 
 import pdla.task.*;
 
+/**
+ * View for the volunteer view.
+ *  
+ * @author Alan Dutems, Benjamin Zolver
+ * @version 1.0
+ * */
 public class VolunteerView {
 	
 	private JFrame frame = new JFrame("Volunteer");
@@ -27,6 +33,9 @@ public class VolunteerView {
 	private JPanel centerPanel = new JPanel();
 	private JScrollPane scrollerBar = new JScrollPane(centerPanel);
 	
+	/*
+	 * Initiate all the component on the screen.
+	 */
 	private void createScreen() {
 		topPanel.add(refresh);
 		topPanel.add(SortButton);
@@ -38,19 +47,31 @@ public class VolunteerView {
 	    frame.setVisible(true); 
 	}
 	
+	/**
+     * @return refresh button (JButton).
+     * */
 	public JButton getButton() {
 		return refresh;
 	}
 	
+	/**
+     * @return refresh button (JButton).
+     * */
 	public JComboBox<String> getButtonSort () {
 		return SortButton;
 	}
 	
+	/**
+     * Set list of tasks.
+     * */
 	public void setTaskList(List<Task> list) {
 		listTasks.clear();
 		listTasks.addAll(list);
 	}
 	
+	/**
+     * Update the screen by printing of the task in the list. 
+     * */
 	public void updateScreen() {
 		centerPanel.removeAll();
 		centerPanel.revalidate();
@@ -61,6 +82,9 @@ public class VolunteerView {
 		frame.setVisible(true);
 	}
 	
+	/**
+     * Constructor
+     * */
 	public VolunteerView() {
 		createScreen();
 	}

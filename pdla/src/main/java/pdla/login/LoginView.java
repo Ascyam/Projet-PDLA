@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 /**
  * View for the login view. This class create a interface where the user can interact.
  *  
- * @author Benjamin Zolver
+ * @author Alan Dutems, Benjamin Zolver
  * @version 1.0
  * */
 public class LoginView {
