@@ -12,6 +12,7 @@ pdla/pom.xml
 
 pdla/target
 
+.gitignore
 
 ### Eclipse ###
 .apt_generated
