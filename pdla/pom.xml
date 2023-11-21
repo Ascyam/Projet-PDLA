@@ -23,6 +23,7 @@
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <!-- not working with the .jar file -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
