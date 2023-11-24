@@ -4,8 +4,6 @@
 !**/src/test/**/target/*
 
 pdla/target/
-pdla/.gitignore
-.gitignore
 
 ### Eclipse ###
 .apt_generated
