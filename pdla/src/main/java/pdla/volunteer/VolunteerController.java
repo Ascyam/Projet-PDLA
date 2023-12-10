@@ -31,6 +31,9 @@ public class VolunteerController implements TaskListener, ActionListener, ItemLi
 		view.getButtonSort().addItemListener(this);
 	}
 	
+	/**
+	 * Get all tasks from the database. Add this class as the listener. Sort the list of tasks. Send the list to the view
+	 */
 	private void getTask() {
 		this.listTasks.clear();
 		this.listTasks.addAll(model.getTask());
@@ -40,6 +43,10 @@ public class VolunteerController implements TaskListener, ActionListener, ItemLi
     	view.updateScreen();
 	}
 	
+	/**
+	 * Sort the list of task according of the user's choice. 
+	 * @param sort : the kind of sort.
+	 */
 	private void sort(String sort) {
 		if (sort.equals("Alphabetic")) {
 			Collections.sort(this.listTasks, new titleComparator());

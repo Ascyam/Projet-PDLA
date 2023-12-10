@@ -33,6 +33,9 @@ public class UserController implements TaskListener, ActionListener, ItemListene
 		getTask();
 	}
 	
+	/**
+	 * Get all tasks from the database. Add this class as the listener. Sort the list of tasks. Send the list to the view
+	 */
 	private void getTask() {
 		this.listTasks.clear();
 		this.listTasks.addAll(model.getTask());
@@ -42,11 +45,18 @@ public class UserController implements TaskListener, ActionListener, ItemListene
 		view.updateScreen();
 	}
 	
+	/**
+	 * Create a new task on the screen and in the database.
+	 */
 	private void createTask() {
 		model.addTask("New request");
 		getTask();
 	}
 	
+	/**
+	 * Sort the list of task according of the user's choice. 
+	 * @param sort : the kind of sort.
+	 */
 	private void sort(String sort) {
 		if (sort.equals("Alphabetic")) {
 			Collections.sort(this.listTasks, new titleComparator());

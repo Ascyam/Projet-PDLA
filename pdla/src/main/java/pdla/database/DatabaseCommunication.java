@@ -53,7 +53,6 @@ public class DatabaseCommunication {
 	/**
      * Set the username of the current user.
      * @param id the id of the task
-     * @throws SQLException.
      * */
 	public void setUsernameDB(int id) {
 		try {
@@ -73,7 +72,6 @@ public class DatabaseCommunication {
      * Get all the task from the table Task.
      * @param classType the type of task you want to create.
      * @return List of all task. 
-     * @throws SQLException
      * */
 	public List<Task> getTaskDB(Class<? extends Task> classType){
 		try {
@@ -104,7 +102,6 @@ public class DatabaseCommunication {
 	/**
      * Add a task to the table Task. Some fields are automatically filled (username,volunteer,status,reason,note). 
      * @param title the title of task created.
-     * @throws SQLException
      * */
 	public void addTaskDB(String title) {
         try {
@@ -122,7 +119,6 @@ public class DatabaseCommunication {
      * @param lastname of the user. The lastname is also the username in lower character.
      * @param password of the user.
      * @param role of the user.
-     * @throws SQLException
      * */
 	public void addUserDB(String firstname, String lastname, String password, String role) {
         try {
@@ -137,7 +133,6 @@ public class DatabaseCommunication {
 	/**
      * Remove a task from the table Task. 
      * @param id the id of task removed.
-     * @throws SQLException
      * */
 	public void removeTaskDB(int id) {
 		try {
@@ -154,7 +149,6 @@ public class DatabaseCommunication {
      * @param field the field that is changed.
      * @param value the value that is set in the field.
      * @param id the id of the task.
-     * @throws SQLException
      * */
 	public void changeTaskStringDB(String field,String value,int id) {
 		try {

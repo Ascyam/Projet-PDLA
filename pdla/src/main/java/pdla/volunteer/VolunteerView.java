@@ -32,7 +32,7 @@ public class VolunteerView {
 	private JPanel centerPanel = new JPanel();
 	private JScrollPane scrollerBar = new JScrollPane(centerPanel);
 	
-	/*
+	/**
 	 * Initiate all the component on the screen.
 	 */
 	private void createScreen() {

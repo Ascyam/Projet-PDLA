@@ -7,7 +7,7 @@ import pdla.task.Task;
 import pdla.task.UserTask;
 
 /**
- * Model for the user view.
+ * Model for the user view.This class made the link between the controller and different methods from the database class.
  *  
  * @author Alan Dutems, Benjamin Zolver
  * @version 1.0

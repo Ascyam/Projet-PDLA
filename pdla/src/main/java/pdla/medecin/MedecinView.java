@@ -33,6 +33,9 @@ public class MedecinView {
 	private JPanel centerPanel = new JPanel();
 	private JScrollPane scrollerBar = new JScrollPane(centerPanel);
 	
+	/**
+	 * Init the screen. 
+	 */
 	private void createScreen() {
 		topPanel.add(newTask);
 		topPanel.add(SortButton);
@@ -44,19 +47,34 @@ public class MedecinView {
 	    frame.setVisible(true); 
 	}
 	
+	/**
+	 * Get the refresh button.
+	 * @return JButton. 
+	 */
 	public JButton getButton() {
 		return newTask;
 	}
 	
+	/**
+	 * Return the ComboBox for sorting tasks.
+	 * @return JComboBox.
+	 */
 	public JComboBox<String> getButtonSort(){
 		return SortButton;
 	}
 	
+	/**
+	 * Set list of tasks in the class.
+	 * @param list of task.
+	 */
 	public void setTaskList(List<Task> list) {
 		listTasks.clear();
 		listTasks.addAll(list);
 	}
 	
+	/**
+	 * Upadate the screen and print all tasks.
+	 */
 	public void updateScreen() {
 		centerPanel.removeAll();
 		centerPanel.revalidate();
@@ -67,6 +85,10 @@ public class MedecinView {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Add only one new task on the screen.
+	 * @param t : the new task to add on the screen
+	 */
 	public void addNewTaskScreen(Task t) {
 		centerPanel.add(t.getGuiComponent(),0);
 		frame.setVisible(true);

@@ -6,7 +6,7 @@ import pdla.database.DatabaseCommunication;
 import pdla.task.*;
 
 /**
- * Model for the medecin view.
+ * Model for the medecin view. This class made the link between the controller and different methods from the database class.
  *  
  * @author Alan Dutems, Benjamin Zolver
  * @version 1.0

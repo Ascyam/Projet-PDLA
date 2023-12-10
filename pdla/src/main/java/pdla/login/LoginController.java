@@ -88,8 +88,7 @@ public class LoginController implements ActionListener, KeyListener {
 	
 	/**
 	 * Action when the key "enter" is clicked.
-	 * <p>Works only for the field password
-	 * </p>
+	 * Works only for the field password.
 	 * */
 	@Override
 	public void keyPressed(KeyEvent e) {

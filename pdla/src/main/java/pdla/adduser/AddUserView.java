@@ -41,6 +41,10 @@ public class AddUserView {
 		CreateScreen();
 	}
 	
+	/**
+	 * Return values in the differents fields.
+	 * @return ArrayList<String>
+	 */
 	public ArrayList<String> getValue() {
 		if(!(firstname.getText().isEmpty() && lastname.getName().isEmpty() && String.valueOf(password.getPassword()).isEmpty())) {
 			String inputUsername = firstname.getText();
@@ -56,6 +60,10 @@ public class AddUserView {
 		
 	}
 	
+	/**
+	 * Return the validation button.
+	 * @return JButton validation.
+	 */
 	public JButton getButton() {
 		return validate;
 	}
