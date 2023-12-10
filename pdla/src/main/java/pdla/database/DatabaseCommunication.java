@@ -20,13 +20,13 @@ import pdla.task.Task;
  * @version 1.0
  * */
 public class DatabaseCommunication {
-	private String userName;
+	public String userName;
 	
 	private static String url = "jdbc:mysql://srv-bdens.insa-toulouse.fr:3306/projet_gei_013";
     private static String usernamedb = "projet_gei_013";
     private static String passworddb = "thoo1Xoh";
     
-    private List<Task> listTasks = new ArrayList<>();
+    private static List<Task> listTasks = new ArrayList<>();
     
     private String selectAll;
 
