@@ -1,5 +1,5 @@
 # Projet-PDLA
-A student project app to help people.
+##A student project app to help people.
 
 In order to use the app, you need to follow a few steps:
 
