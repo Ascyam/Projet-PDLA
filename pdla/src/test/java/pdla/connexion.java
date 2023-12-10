@@ -48,6 +48,8 @@ class DatabaseTest {
 		try {
 			List<Task> list = database.getTaskDB(UserTask.class);
 			database.removeTaskDB(list.get(list.size() - 1).getID());
+			list = database.getTaskDB(UserTask.class);
+			database.removeTaskDB(list.get(list.size() - 1).getID());
 		} catch (Exception e) {
 			fail();
 		}
