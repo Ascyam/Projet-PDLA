@@ -5,7 +5,7 @@ In order to use the app, you need to follow a few steps:
 
 1/ Open a terminal on your computer and clone the repository wherever you want by using the command:
 ```
-git clone https://github.com/ascyam/Projet-PDLA.git
+git clone https://github.com/Ascyam/Projet-PDLA.git
 ``` 
 
 2/ Then open the directory which contains pom.xml with your mouse and right click to open a terminal or use:
