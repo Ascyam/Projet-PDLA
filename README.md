@@ -34,7 +34,7 @@ mvn compile
 ```
 and: 
 ```
-mvn package
+mvn clean package
 ```
 
 6/ Finally, use the following command to execute: 
